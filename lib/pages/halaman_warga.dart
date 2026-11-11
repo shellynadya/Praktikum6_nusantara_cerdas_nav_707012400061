@@ -1,16 +1,18 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../navigation/app_routes.dart';
 import '../cubit/favorit_cubit.dart';
 import '../cubit/pengajuan_cubit.dart';
+import '../widgets/theme_toggle_card.dart';
 
 class HalamanWarga extends StatelessWidget {
   const HalamanWarga({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final tema = Theme.of(context);
+
     return SingleChildScrollView(
       child: Center(
         child: Column(
@@ -18,6 +20,7 @@ class HalamanWarga extends StatelessWidget {
           children: [
             const SizedBox(height: 30),
 
+            // Foto Profil Warga
             const CircleAvatar(
               radius: 40,
               child: Icon(
@@ -28,10 +31,10 @@ class HalamanWarga extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            const Text(
+            // Judul Profil Warga
+            Text(
               'Profil Warga',
-              style: TextStyle(
-                fontSize: 22,
+              style: tema.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -40,8 +43,14 @@ class HalamanWarga extends StatelessWidget {
 
             const Text('Nama: Warga Nusantara'),
 
+            const SizedBox(height: 20),
+
+            // Custom Widget Pengaturan Tema
+            const ThemeToggleCard(),
+
             const SizedBox(height: 25),
 
+            // Tombol Riwayat Laporan
             ElevatedButton.icon(
               onPressed: () {
                 Navigator.pushNamed(
@@ -55,16 +64,17 @@ class HalamanWarga extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            const Text(
+            // Judul Layanan Favorit
+            Text(
               'Layanan Favorit',
-              style: TextStyle(
-                fontSize: 20,
+              style: tema.textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),
 
             const SizedBox(height: 10),
 
+            // Daftar Layanan Favorit
             BlocBuilder<FavoritCubit, Set<String>>(
               builder: (context, favorit) {
                 if (favorit.isEmpty) {
@@ -81,9 +91,9 @@ class HalamanWarga extends StatelessWidget {
                         vertical: 5,
                       ),
                       child: ListTile(
-                        leading: const Icon(
+                        leading: Icon(
                           Icons.star,
-                          color: Colors.amber,
+                          color: tema.colorScheme.primary,
                         ),
                         title: Text(layanan),
                       ),
@@ -95,16 +105,17 @@ class HalamanWarga extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            const Text(
+            // Judul Daftar Pengajuan
+            Text(
               'Daftar Pengajuan',
-              style: TextStyle(
-                fontSize: 20,
+              style: tema.textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),
 
             const SizedBox(height: 10),
 
+            // Daftar Pengajuan Layanan
             BlocBuilder<PengajuanCubit, List<String>>(
               builder: (context, pengajuan) {
                 if (pengajuan.isEmpty) {
@@ -121,9 +132,9 @@ class HalamanWarga extends StatelessWidget {
                         vertical: 5,
                       ),
                       child: ListTile(
-                        leading: const Icon(
+                        leading: Icon(
                           Icons.assignment_turned_in,
-                          color: Colors.indigo,
+                          color: tema.colorScheme.primary,
                         ),
                         title: Text(layanan),
                         trailing: IconButton(

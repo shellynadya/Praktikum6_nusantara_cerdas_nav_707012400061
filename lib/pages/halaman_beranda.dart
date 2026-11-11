@@ -170,3 +170,5 @@ class _KartuLayanan extends StatelessWidget {
     );
   }
 }
+
+// izza bisa jaga rahasia kann sut ya cuman kamu, aku salwaa, anakin, lia sama nadya april aja yang tau, jangan bilang kesiapa siapa termasuk anakin sut diem aja keep sikapnya biasa aja normal jangan keliatan atau bilang bilang ada soal bocoran, aku nanti dimarahin salwa, plis plis
